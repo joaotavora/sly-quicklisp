@@ -15,10 +15,10 @@ install:
   - git clone https://github.com/capitaomorte/sly ../sly
 
 script:
-  - emacs -Q --batch \
-    -L ../sly -l ../sly/sly-autoloads.el \
-    -L .      -l sly-hello-world-tests.el \
-    --eval "(setq inferior-lisp-program \"$LISP\")" \
+  - emacs -Q --batch
+    -L ../sly -l ../sly/sly-autoloads.el
+    -L .      -l sly-hello-world-tests.el
+    --eval "(setq inferior-lisp-program \"$LISP\")"
     --eval '(sly-batch-test "sly-hello-world"))' 
     
 
