@@ -1,0 +1,23 @@
+language: emacs
+
+env:
+  - "LISP=sbcl EMACS=emacs24"
+  - "LISP=ccl EMACS=emacs24"
+
+install:
+  - curl https://raw.githubusercontent.com/capitaomorte/cl-travis/master/install.sh | bash
+  - if [ "$EMACS" = "emacs24" ]; then
+        sudo add-apt-repository -y ppa:cassou/emacs &&
+        sudo apt-get -qq update &&
+        sudo apt-get -qq -f install &&
+        sudo apt-get -qq install emacs24-nox;
+    fi
+  - git clone https://github.com/capitaomorte/sly ../sly
+
+script:
+  - emacs -Q --batch
+    -L ../sly -l ../sly/sly-autoloads.el 
+    -L .      -l sly-hello-world-tests.el
+    --eval '(sly-batch-test "sly-hello-world"))'
+    
+
