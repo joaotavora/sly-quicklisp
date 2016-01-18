@@ -48,8 +48,8 @@ in `sly-editing-mode-hook', i.e. lisp files."
   "Interactive command made available in lisp-editing files."
   (interactive)
   (let ((results (sly-eval '(slynk-hello-world:hello-world))))
-    (sly-message (first results))
-    (setq-local sly-hello-world--last-reported-feature (second results))))
+    (sly-message (cl-first results))
+    (setq-local sly-hello-world--last-reported-feature (cl-second results))))
 
 (define-minor-mode sly-hello-world-mode
   "A minor mode active when the contrib is active."
