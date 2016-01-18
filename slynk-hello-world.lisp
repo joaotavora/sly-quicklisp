@@ -1,4 +1,7 @@
-(defpackage #:slynk-hello-world (:use :cl #:slynk-api))
+(defpackage #:slynk-hello-world
+  (:use :cl #:slynk-api)
+  (:export
+   #:hello-world))
 (in-package #:slynk-hello-world)
 
 (defslyfun hello-world ()
