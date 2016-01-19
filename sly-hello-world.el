@@ -1,4 +1,4 @@
-;;; sly-hello-world.el --- Support named readtables in Common Lisp files  -*- lexical-binding: t; -*-
+;;; sly-hello-world.el --- A template SLY contrib  -*- lexical-binding: t; -*-
 ;;
 ;; Version: 0.1
 ;; URL: https://github.com/capitaomorte/sly-hello-world
