@@ -1,11 +1,11 @@
 ;;; -*- lisp -*-
 (in-package :asdf)
 
-(defsystem :slynk-hello-world
+(defsystem :slynk-quicklisp
     :author "João Távora <https://github.com/capitaomorte>"
     :depends-on (#:slynk)
   :description "HELLO-WORLD support for Slynk"
-  :components ((:file "slynk-hello-world")))
+  :components ((:file "slynk-quicklisp")))
 
 ;; Local Variables:
 ;; coding: utf-8

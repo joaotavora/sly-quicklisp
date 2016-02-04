@@ -17,8 +17,8 @@ install:
 script:
   - emacs -Q --batch
     -L ../sly -l ../sly/sly-autoloads.el
-    -L .      -l sly-hello-world-tests.el
+    -L .      -l sly-quicklisp-tests.el
     --eval "(setq inferior-lisp-program \"$LISP\")"
-    --eval '(sly-batch-test "sly-hello-world"))' 
+    --eval '(sly-batch-test "sly-quicklisp"))' 
     
 
