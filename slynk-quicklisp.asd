@@ -3,8 +3,8 @@
 
 (defsystem :slynk-quicklisp
     :author "João Távora <https://github.com/capitaomorte>"
-    :depends-on (#:slynk)
-  :description "HELLO-WORLD support for Slynk"
+    :depends-on (#:slynk #:quicklisp)
+  :description "Basic QUICKLISP support for Slynk"
   :components ((:file "slynk-quicklisp")))
 
 ;; Local Variables:

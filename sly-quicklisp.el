@@ -38,18 +38,25 @@
 Depends on the `slynk-quicklisp' ASDF system Insinuates itself
 in `sly-editing-mode-hook', i.e. lisp files."
   (:slynk-dependencies slynk-quicklisp)
-  (:on-load (add-hook 'sly-editing-mode-hook 'sly-quicklisp-mode))
-  (:on-unload (remove-hook 'sly-editing-mode-hook 'sly-quicklisp-mode)))
+  (:on-load (add-hook 'sly-mode-hook 'sly-quicklisp-mode))
+  (:on-unload (remove-hook 'sly-mode-hook 'sly-quicklisp-mode)))
 
-(defvar sly-quicklisp--last-reported-feature nil
-  "Internal variable for world-helloing purposes")
+(defvar sly-quicklisp--enabled-dists nil
+  "Known enabled quicklisp dists")
 
-(defun sly-quicklisp ()
+(defun sly-quickload (system)
   "Interactive command made available in lisp-editing files."
-  (interactive)
-  (let ((results (sly-eval '(slynk-quicklisp:quicklisp))))
-    (sly-message (cl-first results))
-    (setq-local sly-quicklisp--last-reported-feature (cl-second results))))
+  (interactive
+   (list (sly-completing-read "QL system? "
+                              (sly-eval
+                               '(slynk-quicklisp:available-system-names))
+                              nil
+                              t)))
+  (sly-eval-async `(slynk-quicklisp:quickload ,system)
+    (lambda (retval)
+      (setq sly-quicklisp--enabled-dists retval)
+      (sly-message "%s is ready to use!" system)))
+  (sly-message "ql:quickloading %s..." system))
 
 (define-minor-mode sly-quicklisp-mode
   "A minor mode active when the contrib is active."
@@ -64,25 +71,25 @@ in `sly-editing-mode-hook', i.e. lisp files."
                      sly-extra-mode-line-constructs)))))
 
 (defvar sly-quicklisp-map
-  "A keymap accompanying `sly-quicklisp-mode'."
   (let ((map (make-sparse-keymap)))
-    (define-key sly-prefix-map (kbd "C-d C-w") 'sly-quicklisp)
-    map))
+    (define-key sly-prefix-map (kbd "C-d C-q") 'sly-quickload)
+    map)
+  "A keymap accompanying `sly-quicklisp-mode'.")
 
 (defun sly-quicklisp--mode-line-construct ()
   "A little pretty indicator in the mode-line"
-  `(:propertize ,(cond (sly-quicklisp--last-reported-feature
-                        (symbol-name sly-quicklisp--last-reported-feature))
+  `(:propertize ,(cond (sly-quicklisp--enabled-dists
+                        (format "QL%s" sly-quicklisp--enabled-dists))
                        (sly-quicklisp-mode
-                        "hello world")
+                        "QL")
                        (t
                         "-"))
                 face hi-pink
                 mouse-face mode-line-highlight
-                help-echo ,(if sly-quicklisp--last-reported-feature
-                               (format "Last reported HELLO-WORLD feature %s"
-                                       sly-quicklisp--last-reported-feature)
-                             "No HELLO-WORLD features reported so far")))
+                help-echo ,(if sly-quicklisp--enabled-dists
+                               (format "Enabled dists %s"
+                                       sly-quicklisp--enabled-dists)
+                             "NO QL dists reported so far. Load a system using `sly-quickload'")))
 
 ;;; Automatically add ourselves to `sly-contribs' when this file is loaded
 ;;;###autoload

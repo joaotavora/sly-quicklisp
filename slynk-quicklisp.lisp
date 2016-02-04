@@ -4,23 +4,12 @@
    #:quicklisp))
 (in-package #:slynk-quicklisp)
 
-(defslyfun quicklisp ()
-  "Provide quicklispish functionality for the Emacs side of SLY"
-  (let ((random-feature (nth (random (length *features*)) *features*)))
-    (list
-     (format nil "Hello world, did you know your ~a supports ~a?"
-             (lisp-name)
-             random-feature)
-     random-feature)))
+(defslyfun quickload (system-name)
+  "Basically the same as QL:QUICKLOAD"
+  (ql:quickload system-name)
+  (mapcar #'ql-dist:version (ql-dist:enabled-dists)))
 
-(slynk-backend:definterface lisp-name ()
-  "Identify the current lisp for hello-wordish purposes"
-  (format nil "lisp"))
-
-#+sbcl
-(slynk-backend:defimplementation lisp-name () "SBCL")
-
-#+allegro
-(slynk-backend:defimplementation lisp-name () "ALLEGRO")
+(defslyfun available-system-names ()
+  (cl:mapcar 'ql-dist:name (ql:system-list)))
 
 (provide 'slynk-quicklisp)

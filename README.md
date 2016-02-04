@@ -1,44 +1,19 @@
 [![MELPA](http://melpa.org/packages/sly-quicklisp-badge.svg)](http://melpa.org/#/sly-quicklisp)
 [![Build Status](https://travis-ci.org/capitaomorte/sly-quicklisp.svg?branch=master)](https://travis-ci.org/capitaomorte/sly-quicklisp)
 
-# Use this to write a [SLY][sly] contrib
+# Basic QUICKLISP support for SLY
 
-`sly-quicklisp` is an external contrib for [SLY][sly] that does
-nothing useful in itself, but acts is a template for writing other
-external contribs.
+`sly-quicklisp` is an external contrib for [SLY][sly] that provides a
+`sly-quickload` command `C-c C-d C-q` that prompts the user for a
+package to install.
 
-This example makes it easy to setup a SLY extension that:
+![screenshot](screenshot.png)
 
-* is completely self-contained (doesn't need to be bundled with SLY)
-
-* has both Emacs-Lisp and Common-Lisp counterparts
-
-  See `sly-quicklisp.el` and `slynk-quicklisp.lisp`
-
-* has automated [Travis tests](https://travis-ci.org/capitaomorte/sly-quicklisp) already in place
-
-  See the file `.travis.yml`. There are some sample unit tests for
-  this contrib using SBCL and CCL there.
-
-* is easily added to [MELPA](http://melpa.org)
-
-  Just ask make a
-  [pull request to MELPA](https://github.com/milkypostman/melpa/pulls)
-  and ask for your recipe to be added to `recipes/`. Use this template:
-
-```lisp
-(sly-quicklisp :fetcher github
-                         :repo "capitaomorte/sly-quicklisp"
-                         :files (:defaults
-                                 "*.lisp"
-                                 "*.asd"))
-```
-
-
-The remainder of this `README.md` file is itself a template for the
-one that should be included in a contrib.
+The latest quicklisp dist is shown in the mode-line.
 
 ## Install from MELPA
+
+_MELPA setup on the way._
 
 Perform the [usual MELPA setup](http://melpa.org) and then select
 `sly-quicklisp` for installation from the package menu or from `M-x
