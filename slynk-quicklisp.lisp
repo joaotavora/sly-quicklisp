@@ -1,7 +1,8 @@
 (defpackage #:slynk-quicklisp
   (:use :cl #:slynk-api)
   (:export
-   #:quicklisp))
+   #:quickload
+   #:available-system-names))
 (in-package #:slynk-quicklisp)
 
 (defslyfun quickload (system-name)
