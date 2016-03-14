@@ -13,8 +13,6 @@ The latest quicklisp dist is shown in the mode-line.
 
 ## Install from MELPA
 
-_MELPA setup on the way._
-
 Perform the [usual MELPA setup](http://melpa.org) and then select
 `sly-quicklisp` for installation from the package menu or from `M-x
 package-install`.
