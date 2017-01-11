@@ -1,4 +1,4 @@
-;;; sly-quicklisp.el --- A template SLY contrib  -*- lexical-binding: t; -*-
+;;; sly-quicklisp.el --- Quicklisp support for SLY  -*- lexical-binding: t; -*-
 ;;
 ;; Version: 0.1
 ;; URL: https://github.com/capitaomorte/sly-quicklisp
