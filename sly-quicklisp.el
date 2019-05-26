@@ -84,7 +84,6 @@ in `sly-editing-mode-hook', i.e. lisp files."
                         "QL")
                        (t
                         "-"))
-                face hi-pink
                 mouse-face mode-line-highlight
                 help-echo ,(if sly-quicklisp--enabled-dists
                                (format "Enabled dists %s"
