@@ -9,7 +9,8 @@
 ;;;### (autoloads nil "sly-quicklisp" "sly-quicklisp.el" (0 0 0 0))
 ;;; Generated autoloads from sly-quicklisp.el
 
-(add-to-list 'sly-contribs 'sly-quicklisp 'append)
+(with-eval-after-load 'sly
+  (add-to-list 'sly-contribs 'sly-quicklisp 'append))
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "sly-quicklisp" '("sly-quickl")))
 

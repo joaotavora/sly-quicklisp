@@ -93,7 +93,8 @@ in `sly-editing-mode-hook', i.e. lisp files."
 
 ;;; Automatically add ourselves to `sly-contribs' when this file is loaded
 ;;;###autoload
-(add-to-list 'sly-contribs 'sly-quicklisp 'append)
+(with-eval-after-load 'sly
+  (add-to-list 'sly-contribs 'sly-quicklisp 'append))
 
 (provide 'sly-quicklisp)
 ;;; sly-quicklisp.el ends here
