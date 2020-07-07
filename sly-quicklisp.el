@@ -51,7 +51,7 @@ in `sly-editing-mode-hook', i.e. lisp files."
                               (sly-eval
                                '(slynk-quicklisp:available-system-names))
                               nil
-                              t)))
+                              nil)))
   (sly-eval-async `(slynk-quicklisp:quickload ,system)
     (lambda (retval)
       (setq sly-quicklisp--enabled-dists retval)
