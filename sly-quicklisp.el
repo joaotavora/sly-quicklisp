@@ -47,11 +47,11 @@ in `sly-editing-mode-hook', i.e. lisp files."
 (defun sly-quickload (system)
   "Interactive command made available in lisp-editing files."
   (interactive
-   (list (sly-completing-read "QL system? "
-                              (sly-eval
-                               '(slynk-quicklisp:available-system-names))
-                              nil
-                              nil)))
+   (list (completing-read "QL system? "
+                          (sly-eval
+                           '(slynk-quicklisp:available-system-names))
+                          nil
+                          nil)))
   (sly-eval-async `(slynk-quicklisp:quickload ,system)
     (lambda (retval)
       (setq sly-quicklisp--enabled-dists retval)
