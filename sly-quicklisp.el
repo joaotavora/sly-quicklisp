@@ -61,20 +61,18 @@ in `sly-editing-mode-hook', i.e. lisp files."
 (define-minor-mode sly-quicklisp-mode
   "A minor mode active when the contrib is active."
   :group 'sly
+  :keymap nil
   (cond (sly-quicklisp-mode
          (add-to-list 'sly-extra-mode-line-constructs
                       'sly-quicklisp--mode-line-construct
-                      t))
+                      t)
+         (define-key sly-prefix-map (kbd "C-d C-q") #'sly-quickload))
         (t
          (setq sly-extra-mode-line-constructs
                (delq 'sly-quicklisp--mode-line-construct
-                     sly-extra-mode-line-constructs)))))
-
-(defvar sly-quicklisp-map
-  (let ((map (make-sparse-keymap)))
-    (define-key sly-prefix-map (kbd "C-d C-q") 'sly-quickload)
-    map)
-  "A keymap accompanying `sly-quicklisp-mode'.")
+                     sly-extra-mode-line-constructs))
+         (when (eq (lookup-key sly-prefix-map (kbd "C-d C-q")) #'sly-quickload)
+           (define-key sly-prefix-map (kbd "C-d C-q") nil)))))
 
 (defun sly-quicklisp--mode-line-construct ()
   "A little pretty indicator in the mode-line"
