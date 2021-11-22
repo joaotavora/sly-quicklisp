@@ -60,7 +60,7 @@ in `sly-editing-mode-hook', i.e. lisp files."
 
 (define-minor-mode sly-quicklisp-mode
   "A minor mode active when the contrib is active."
-  nil nil nil
+  :group 'sly
   (cond (sly-quicklisp-mode
          (add-to-list 'sly-extra-mode-line-constructs
                       'sly-quicklisp--mode-line-construct
