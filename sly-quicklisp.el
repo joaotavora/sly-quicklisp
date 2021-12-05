@@ -41,6 +41,11 @@ in `sly-editing-mode-hook', i.e. lisp files."
   (:on-load (add-hook 'sly-mode-hook 'sly-quicklisp-mode))
   (:on-unload (remove-hook 'sly-mode-hook 'sly-quicklisp-mode)))
 
+(defface sly-quicklisp-indicator-face
+  '((t :inherit sly-mode-line))
+  "Face for sly-quicklisp mode-line indicator"
+  :group 'sly-mode-faces)
+
 (defvar sly-quicklisp--enabled-dists nil
   "Known enabled quicklisp dists")
 
@@ -82,7 +87,7 @@ in `sly-editing-mode-hook', i.e. lisp files."
                         "QL")
                        (t
                         "-"))
-                face hi-pink
+                face sly-quicklisp-indicator-face
                 mouse-face mode-line-highlight
                 help-echo ,(if sly-quicklisp--enabled-dists
                                (format "Enabled dists %s"
