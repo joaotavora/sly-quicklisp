@@ -10,7 +10,18 @@
   (ql:quickload system-name)
   (mapcar #'ql-dist:version (ql-dist:enabled-dists)))
 
+(defun get-ql-local-project-names ()
+  (apply #'append
+         (cl:mapcar
+          (lambda (path)
+            (with-open-file (in (merge-pathnames path "system-index.txt"))
+              (when in
+                  (loop for line = (read-line in nil nil) while line
+                        collect (pathname-name (pathname line))))))
+          ql:*local-project-directories*)))
+
 (defslyfun available-system-names ()
-  (cl:mapcar 'ql-dist:name (ql:system-list)))
+  (append (cl:mapcar 'ql-dist:name (ql:system-list))
+          (get-ql-local-project-names)))
 
 (provide 'slynk-quicklisp)
