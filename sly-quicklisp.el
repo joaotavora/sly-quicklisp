@@ -5,7 +5,7 @@
 ;; Keywords: languages, lisp, sly
 ;; Package-Requires: ((sly "1.0.0-beta2"))
 ;; Author: João Távora <joaotavora@gmail.com>
-;; 
+;;
 ;; Copyright (C) 2015 João Távora
 ;;
 ;; This file is free software; you can redistribute it and/or modify
@@ -28,7 +28,7 @@
 ;; install.
 ;;
 ;; See README.md
-;; 
+;;
 ;;; Code:
 
 (require 'sly)
@@ -101,4 +101,3 @@ in `sly-editing-mode-hook', i.e. lisp files."
 
 (provide 'sly-quicklisp)
 ;;; sly-quicklisp.el ends here
-

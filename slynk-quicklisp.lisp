@@ -11,6 +11,6 @@
   (mapcar #'ql-dist:version (ql-dist:enabled-dists)))
 
 (defslyfun available-system-names ()
-  (cl:mapcar 'ql-dist:name (ql:system-list)))
+  (append (ql:list-local-systems) (cl:mapcar 'ql-dist:name (ql:system-list))))
 
 (provide 'slynk-quicklisp)
